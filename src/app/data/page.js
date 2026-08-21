@@ -49,7 +49,7 @@ function DataDesaContent({ statData, heroImage }) {
         </div>
       </div>
 
-      <div className="container scroll-section" style={{ padding: '80px 0 150px' }}>
+      <div className="container scroll-section" style={{ paddingTop: '80px', paddingBottom: '150px' }}>
 
         {/* Kependudukan */}
         <section id="kependudukan" style={{ marginBottom: '80px' }}>

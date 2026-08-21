@@ -81,7 +81,7 @@ export default function PotensiClient({ initialData }) {
         </motion.div>
       </div>
 
-      <div className="container scroll-section" style={{ padding: '80px 0 150px' }}>
+      <div className="container scroll-section" style={{ paddingTop: '80px', paddingBottom: '150px' }}>
         <motion.div className="filter-tabs" style={{ alignItems: 'center' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           {CATEGORIES.map((cat, idx) => (
             <button key={idx} className={`filter-btn ${filter === cat ? 'active' : ''}`} onClick={() => setFilter(cat)}>{cat}</button>

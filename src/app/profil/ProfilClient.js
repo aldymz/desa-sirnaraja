@@ -40,7 +40,7 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
       </div>
 
       {/* Profil Singkat */}
-      <section id="gambaran-umum" className="scroll-section" style={{ padding: '100px 0', backgroundColor: '#ffffff' }}>
+      <section id="gambaran-umum" className="scroll-section" style={{ paddingTop: '100px', paddingBottom: '100px', backgroundColor: '#ffffff' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '60px', alignItems: 'center' }}>
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -85,7 +85,7 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
       </section>
 
       {/* Geografi */}
-      <section id="geografi" className="scroll-section" style={{ padding: '100px 0', backgroundColor: '#f8fafc' }}>
+      <section id="geografi" className="scroll-section" style={{ paddingTop: '100px', paddingBottom: '100px', backgroundColor: '#f8fafc' }}>
         <div className="container">
           <motion.div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 80px' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="section-title-bespoke">Administrasi & <span>Wilayah</span></h2>
@@ -148,7 +148,7 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
       </section>
 
       {/* SOTK */}
-      <section id="struktur" className="scroll-section" style={{ padding: '100px 0 140px', background: 'linear-gradient(180deg, #f0fdf4 0%, #ffffff 50%, #f8fafc 100%)', borderTop: '1px solid #dcfce7' }}>
+      <section id="struktur" className="scroll-section" style={{ paddingTop: '100px', paddingBottom: '140px', background: 'linear-gradient(180deg, #f0fdf4 0%, #ffffff 50%, #f8fafc 100%)', borderTop: '1px solid #dcfce7' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 50px' }}>
             <span style={{ color: '#1b4332', backgroundColor: '#ecfdf5', textTransform: 'uppercase', letterSpacing: '3px', fontWeight: '700', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', padding: '6px 16px', borderRadius: '4px', borderLeft: '3px solid #10b981' }}>Pemerintahan Desa Sirnaraja</span>

@@ -25,7 +25,7 @@ export default function ContactClient({ desaData }) {
         </motion.div>
       </div>
 
-      <div className="container scroll-section" style={{ padding: '80px 0 150px' }}>
+      <div className="container scroll-section" style={{ paddingTop: '80px', paddingBottom: '150px' }}>
         <div style={{ textAlign: 'center', marginBottom: '60px', maxWidth: '700px', margin: '0 auto 60px' }}>
           <motion.h2 className="section-title-bespoke" style={{ marginBottom: '20px' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             Informasi <span>Kontak</span>
