@@ -2,7 +2,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Head from 'next/head';
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -26,16 +26,13 @@ export const metadata = {
     siteName: 'Desa Sirnaraja',
   },
   verification: {
-    google: "HDAmTLcAuWaF3FOphG-oLUlGqd8NVMzhWGFBZXoXaCM",
+    google: "AlkWlfdLxJH76AXoe5HbtgqUwjdjhk_olnZItcLzLbU",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id" className={poppins.variable}>
-      <Head>
-        <meta name="google-site-verification" content="AlkWlfdLxJH76AXoe5HbtgqUwjdjhk_olnZItcLzLbU" />
-      </Head>
       <body>
         <div className="app-container">
           <Navbar />
