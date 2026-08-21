@@ -24,6 +24,9 @@ export const metadata = {
     locale: 'id_ID',
     siteName: 'Desa Sirnaraja',
   },
+  verification: {
+    google: "HDAmTLcAuWaF3FOphG-oLUlGqd8NVMzhWGFBZXoXaCM",
+  },
 };
 
 export default function RootLayout({ children }) {
