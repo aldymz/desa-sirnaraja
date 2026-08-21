@@ -93,9 +93,9 @@ export default function Footer() {
 
         <div className="footer-bottom container">
           <p>© {new Date().getFullYear()} Desa Sirnaraja. Hak Cipta Dilindungi.</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <div className="footer-developer"><span>Dikembangkan oleh Tim KKN UNPER 2026</span></div>
-            <Link href="/admin" style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 500, padding: '4px 10px', borderRadius: '5px', border: '1px solid #334155', transition: 'all 0.2s' }}
+            <Link href="/admin" style={{ fontSize: '0.7rem', color: '#475569', fontWeight: 500, padding: '3px 8px', borderRadius: '5px', border: '1px solid #334155', transition: 'all 0.2s', whiteSpace: 'nowrap' }}
               onMouseOver={e => { e.currentTarget.style.background = '#334155'; e.currentTarget.style.color = '#94a3b8'; }}
               onMouseOut={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#475569'; }}>
               ⚙ Admin

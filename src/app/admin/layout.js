@@ -1,8 +1,9 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, FileText, Image as ImageIcon, Users, PieChart, Map, LogOut, ChevronLeft } from 'lucide-react';
+import { LayoutDashboard, FileText, Image as ImageIcon, Users, PieChart, Map, ChevronLeft, Menu, X } from 'lucide-react';
 import './admin.css';
 
 const navItems = [
@@ -14,53 +15,49 @@ const navItems = [
   { name: 'Statistik Desa', path: '/admin/statistik',  icon: PieChart },
 ];
 
-function AdminSidebar() {
+function AdminSidebar({ isOpen, onClose }) {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
-    router.push('/admin/login');
-    router.refresh();
-  };
 
   return (
-    <aside className="admin-sidebar">
-      <div className="admin-sidebar-header">
-        <img src="/images/logo%20desa.png" alt="Logo Desa" style={{ width: '34px', height: '34px', objectFit: 'contain', flexShrink: 0 }} />
-        <div>
-          <p style={{ margin: 0, fontWeight: 700, fontSize: '0.875rem', color: '#f1f5f9', lineHeight: 1.3 }}>Admin Panel</p>
-          <p style={{ margin: 0, fontSize: '0.75rem', color: '#64748b', lineHeight: 1.3 }}>Desa Sirnaraja</p>
+    <>
+      {/* Overlay mobile */}
+      {isOpen && <div className="admin-mobile-overlay" onClick={onClose} />}
+
+      <aside className={`admin-sidebar ${isOpen ? 'admin-sidebar-open' : ''}`}>
+        <div className="admin-sidebar-header">
+          <img src="/images/logo%20desa.png" alt="Logo Desa" style={{ width: '34px', height: '34px', objectFit: 'contain', flexShrink: 0 }} />
+          <div>
+            <p style={{ margin: 0, fontWeight: 700, fontSize: '0.875rem', color: '#0f172a', lineHeight: 1.3 }}>Admin Panel</p>
+            <p style={{ margin: 0, fontSize: '0.75rem', color: '#64748b', lineHeight: 1.3 }}>Desa Sirnaraja</p>
+          </div>
+          {/* Tombol tutup di mobile */}
+          <button className="admin-sidebar-close" onClick={onClose} style={{ color: '#64748b' }}><X size={20} /></button>
         </div>
-      </div>
 
-      <nav className="admin-sidebar-nav">
-        <p className="admin-sidebar-nav-label">Menu</p>
-        {navItems.map(({ name, path, icon: Icon }) => (
-          <Link key={path} href={path} className={`admin-nav-item ${pathname === path ? 'active' : ''}`}>
-            <Icon size={17} />
-            <span>{name}</span>
+        <nav className="admin-sidebar-nav">
+          <p className="admin-sidebar-nav-label">Menu</p>
+          {navItems.map(({ name, path, icon: Icon }) => (
+            <Link key={path} href={path} className={`admin-nav-item ${pathname === path ? 'active' : ''}`} onClick={onClose}>
+              <Icon size={17} />
+              <span>{name}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="admin-sidebar-footer">
+          <Link href="/" className="admin-nav-item" style={{ color: '#94a3b8' }} onClick={onClose}>
+            <ChevronLeft size={17} />
+            <span>Kembali ke Website</span>
           </Link>
-        ))}
-      </nav>
-
-      <div className="admin-sidebar-footer">
-        <p className="admin-sidebar-nav-label">Akun</p>
-        <Link href="/" className="admin-nav-item" style={{ color: '#94a3b8' }}>
-          <ChevronLeft size={17} />
-          <span>Kembali ke Website</span>
-        </Link>
-        <button onClick={handleLogout} className="admin-nav-item danger" style={{ width: '100%', marginTop: '2px' }}>
-          <LogOut size={17} />
-          <span>Keluar / Logout</span>
-        </button>
-      </div>
-    </aside>
+        </div>
+      </aside>
+    </>
   );
 }
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Halaman login tidak pakai layout sidebar
   if (pathname === '/admin/login') {
@@ -72,10 +69,15 @@ export default function AdminLayout({ children }) {
   return (
     <div className="admin-body">
       <div className="admin-layout">
-        <AdminSidebar />
+        <AdminSidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
         <main className="admin-main">
           <header className="admin-header">
+            {/* Hamburger button - hanya tampil di mobile */}
+            <button className="admin-hamburger" onClick={() => setSidebarOpen(true)}>
+              <Menu size={22} />
+            </button>
+
             <div>
               <p className="admin-header-title-sub">
                 {navItems.find(i => i.path === pathname) ? 'Halaman Pengelolaan' : 'Panel Admin'}
@@ -83,7 +85,7 @@ export default function AdminLayout({ children }) {
               <p className="admin-header-title-main">{currentPage}</p>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ textAlign: 'right' }}>
+              <div style={{ textAlign: 'right' }} className="admin-header-info">
                 <p style={{ margin: 0, fontWeight: 600, fontSize: '0.875rem', color: '#0f172a' }}>Admin Desa</p>
                 <p style={{ margin: 0, fontSize: '0.75rem', color: '#64748b' }}>Pemerintah Desa Sirnaraja</p>
               </div>
