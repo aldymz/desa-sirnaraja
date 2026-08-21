@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, X, Plus, Upload, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,7 +10,7 @@ const EMPTY_FORM = { judul: '', kategori: 'Pertanian', deskripsi: '', imageFile:
 
 export default function PotensiClient({ initialData }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+
   const [filter, setFilter] = useState('Semua');
   const [data, setData] = useState(initialData || []);
   const [selectedItem, setSelectedItem] = useState(null);
