@@ -105,7 +105,6 @@ export default function AdminDesa() {
             <p className="admin-section-title">3. Kontak Resmi</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div><label className="admin-label">Alamat Lengkap</label><textarea className="admin-textarea" rows={3} value={formData.kontak?.alamat || ''} onChange={e => setNested('kontak', 'alamat', e.target.value)} /></div>
-              <div><label className="admin-label">Telepon / WhatsApp</label><input className="admin-input" value={formData.kontak?.telepon || ''} onChange={e => setNested('kontak', 'telepon', e.target.value)} /></div>
               <div><label className="admin-label">Email</label><input type="email" className="admin-input" value={formData.kontak?.email || ''} onChange={e => setNested('kontak', 'email', e.target.value)} /></div>
             </div>
           </div>

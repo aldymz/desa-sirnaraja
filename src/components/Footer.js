@@ -72,7 +72,6 @@ export default function Footer() {
             <h3>Hubungi Kami</h3>
             <ul className="footer-contact">
               <li><MapPin size={18} className="contact-icon" /><span>Sirnaraja, Kec. Cigalontang, Kabupaten Tasikmalaya, Jawa Barat 46463</span></li>
-              <li><Phone size={18} className="contact-icon" /><span>(0265) 1234567</span></li>
               <li><Mail size={18} className="contact-icon" /><span>pemdessirnaraja@gmail.com</span></li>
               <li><Clock size={18} className="contact-icon" /><span>Senin - Jumat: 08.00 - 16.00 WIB</span></li>
             </ul>

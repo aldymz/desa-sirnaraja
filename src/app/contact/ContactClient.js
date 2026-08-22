@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Mail, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const cards = [
   { icon: MapPin, title: 'Alamat Balai Desa', key: 'alamat', bg: '#f0fdf4', color: 'var(--primary-color)' },
-  { icon: Phone, title: 'Saluran Telepon', key: 'telepon', bg: '#f0fdf4', color: 'var(--primary-color)' },
   { icon: Mail, title: 'Surat Elektronik', key: 'email', bg: '#f0fdf4', color: 'var(--primary-color)' },
   { icon: Clock, title: 'Jam Pelayanan', value: 'Senin - Jumat: 08.00 - 16.00 WIB\nSabtu & Minggu: Tutup', bg: '#f8fafc', color: '#64748b' },
 ];
