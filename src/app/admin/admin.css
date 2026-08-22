@@ -182,210 +182,183 @@
   flex: 1;
 }
 
-/* ─── Premium Admin Dashboard ───────────────────────── */
-.admin-welcome-banner {
-  position: relative;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border-radius: 20px;
-  padding: 36px 40px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.4);
-  color: #fff;
-}
-
-.admin-welcome-content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-}
-
-.admin-welcome-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 16px;
-  backdrop-filter: blur(4px);
-}
-
-.admin-welcome-title {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0 0 10px 0;
-  letter-spacing: -0.5px;
-  background: linear-gradient(to right, #fff, #94a3b8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.admin-welcome-desc {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #cbd5e1;
-  margin: 0 0 24px 0;
-}
-
-.admin-welcome-time {
-  display: flex;
-  align-items: center;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #94a3b8;
-  gap: 6px;
-}
-
-.admin-welcome-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  z-index: 1;
-}
-.shape-1 {
-  top: -50px; right: -50px;
-  width: 300px; height: 300px;
-  background: rgba(37, 99, 235, 0.3);
-}
-.shape-2 {
-  bottom: -100px; right: 150px;
-  width: 250px; height: 250px;
-  background: rgba(16, 185, 129, 0.2);
-}
-
-.admin-stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-.admin-stat-card-premium {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s ease;
+/* ─── Ultra-Minimalist SaaS Dashboard (Vercel/Linear style) ───────────────────────── */
+.admin-dashboard-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 32px;
+  max-width: 1000px;
+}
+
+/* Hero Section */
+.dashboard-hero {
+  padding: 10px 0 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.dashboard-hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.04em;
+  margin: 0 0 8px 0;
+}
+
+.dashboard-hero-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Bento Grid */
+.dashboard-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.bento-card {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 160px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.01);
 }
 
-.admin-stat-card-premium::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
+.bento-card:hover {
+  border-color: #999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transform: translateY(-2px);
 }
 
-.admin-stat-card-premium:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.08);
-  border-color: #cbd5e1;
-}
-
-.admin-stat-card-premium:hover::before {
-  opacity: 1;
-}
-
-.stat-card-header {
+.bento-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
-.stat-card-header p {
+.bento-label {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: #64748b;
+  font-weight: 500;
+  color: #666;
+}
+
+.bento-icon {
+  color: #999;
+  transition: color 0.2s;
+}
+
+.bento-card:hover .bento-icon {
+  color: #111;
+}
+
+.bento-card-bottom {
+  margin-top: 32px;
+}
+
+.bento-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.bento-desc {
+  font-size: 0.8rem;
+  color: #888;
   margin: 0;
 }
 
-.stat-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+.bento-hover-indicator {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  opacity: 0;
+  transform: translateX(-10px);
+  color: #111;
+  transition: all 0.2s ease;
+}
+
+.bento-card:hover .bento-hover-indicator {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Secondary Panels */
+.dashboard-secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.bento-panel {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.01);
+}
+
+.bento-panel-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.stat-card-body h3 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 4px 0;
-  line-height: 1.1;
+.bento-panel-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0;
 }
 
-.stat-card-body span {
-  font-size: 0.8rem;
-  color: #94a3b8;
+.panel-header-icon {
+  color: #666;
+}
+
+.bento-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: #444;
   font-weight: 500;
 }
 
-.stat-card-footer {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px dashed #e2e8f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #3b82f6;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.stat-card-footer:hover {
-  color: #2563eb;
-}
-
-.admin-grid-layout {
-  display: flex;
-  gap: 24px;
-}
-
-.admin-activity-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px;
-  background: #f8fafc;
-  border-radius: 10px;
-  border: 1px solid #f1f5f9;
-  transition: background 0.2s;
-}
-.admin-activity-item:hover {
-  background: #f1f5f9;
-}
-
-.activity-dot {
-  width: 10px; height: 10px;
+.status-indicator {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  margin-top: 6px;
 }
-.activity-dot.blue { background: #3b82f6; box-shadow: 0 0 0 4px #dbeafe; }
-.activity-dot.green { background: #10b981; box-shadow: 0 0 0 4px #d1fae5; }
 
-.activity-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #0f172a;
-  margin: 0 0 2px;
+.status-indicator.online {
+  background: #0070f3; /* Vercel Blue */
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
 }
-.activity-desc {
+
+.status-note {
   font-size: 0.8rem;
-  color: #64748b;
-  margin: 0;
+  color: #888;
+  margin: 10px 0 0 0;
+  line-height: 1.5;
 }
 
 /* ─── Panel (white card wrapper) ────────────────────── */
