@@ -68,19 +68,36 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
             <h2 style={{ color: 'var(--primary-color)', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '20px' }}>Visi Desa</h2>
             <p className="visi-misi-text">{desaData?.visi || 'Terwujudnya Desa Sirnaraja yang Agamis, Mandiri, Sejahtera, dan Berbudaya Berlandaskan Gotong Royong pada Tahun 2028.'}</p>
           </motion.div>
-          <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
-            {(desaData?.misi || [
+          {(() => {
+            const misiList = desaData?.misi || [
               { nomor: '01', teks: 'Meningkatkan kualitas sumber daya manusia melalui pendidikan dan keagamaan yang inklusif.' },
               { nomor: '02', teks: 'Membangun kemandirian ekonomi desa berbasis pertanian terpadu dan digitalisasi UMKM.' },
               { nomor: '03', teks: 'Meningkatkan tata kelola pemerintahan desa yang bersih, transparan, cepat, dan melayani.' },
               { nomor: '04', teks: 'Menjaga kelestarian lingkungan hidup dan kearifan budaya lokal sebagai warisan anak cucu.' },
-            ]).map((m, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>Misi {m.nomor || m.num}</h3>
-                <p style={{ color: '#94a3b8', lineHeight: '1.8' }}>{m.teks || m.text}</p>
-              </motion.div>
-            ))}
-          </div>
+            ];
+            
+            if (misiList.length === 1) {
+              return (
+                <div style={{ marginTop: '60px' }}>
+                  <motion.div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                    <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>Misi {misiList[0].nomor || misiList[0].num || '01'}</h3>
+                    <p className="visi-misi-text">{misiList[0].teks || misiList[0].text}</p>
+                  </motion.div>
+                </div>
+              );
+            }
+
+            return (
+              <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
+                {misiList.map((m, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
+                    <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>Misi {m.nomor || m.num}</h3>
+                    <p style={{ color: '#94a3b8', lineHeight: '1.8' }}>{m.teks || m.text}</p>
+                  </motion.div>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </section>
 
