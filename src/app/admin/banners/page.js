@@ -104,29 +104,29 @@ export default function AdminBanners() {
                   </div>
 
                   {/* Fields */}
-                  <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>Status</span>
-                      <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', color: b.aktif ? '#16a34a' : '#94a3b8' }}>
+                      <span className="admin-label" style={{ marginBottom: 0 }}>Status</span>
+                      <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer', color: b.aktif ? '#16a34a' : '#666' }}>
                         <input type="checkbox" checked={b.aktif} onChange={e => change(b.id, 'aktif', e.target.checked)} />
                         {b.aktif ? 'Aktif' : 'Nonaktif'}
                       </label>
                     </div>
                     {b.isNew && (
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#475569', marginBottom: '4px' }}>Halaman</label>
-                        <select value={b.halaman} onChange={e => change(b.id, 'halaman', e.target.value)} style={{ width: '100%', padding: '7px 9px', borderRadius: '5px', border: '1px solid #cbd5e1', fontSize: '0.8rem', background: '#fff' }}>
+                        <label className="admin-label">Halaman</label>
+                        <select className="admin-select" value={b.halaman} onChange={e => change(b.id, 'halaman', e.target.value)}>
                           {PAGES.map(p => <option key={p} value={p}>{p}</option>)}
                         </select>
                       </div>
                     )}
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#475569', marginBottom: '4px' }}>Judul</label>
-                      <input value={b.judul || ''} onChange={e => change(b.id, 'judul', e.target.value)} style={{ width: '100%', padding: '7px 9px', borderRadius: '5px', border: '1px solid #cbd5e1', fontSize: '0.8rem' }} />
+                      <label className="admin-label">Judul</label>
+                      <input className="admin-input" value={b.judul || ''} onChange={e => change(b.id, 'judul', e.target.value)} />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, color: '#475569', marginBottom: '4px' }}>Subjudul</label>
-                      <textarea value={b.subjudul || ''} onChange={e => change(b.id, 'subjudul', e.target.value)} rows={2} style={{ width: '100%', padding: '7px 9px', borderRadius: '5px', border: '1px solid #cbd5e1', fontSize: '0.8rem', resize: 'none' }} />
+                      <label className="admin-label">Subjudul</label>
+                      <textarea className="admin-textarea" value={b.subjudul || ''} onChange={e => change(b.id, 'subjudul', e.target.value)} rows={2} style={{ minHeight: '60px' }} />
                     </div>
                   </div>
                 </div>
