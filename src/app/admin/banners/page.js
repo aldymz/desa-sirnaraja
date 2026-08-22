@@ -7,9 +7,11 @@ import { Plus, Trash2, Save, Image as ImageIcon, UploadCloud } from 'lucide-reac
 
 const PAGES = ['beranda', 'profil', 'potensi', 'data'];
 
+let cachedData = null;
+
 export default function AdminBanners() {
-  const [banners, setBanners] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [banners, setBanners] = useState(cachedData || []);
+  const [loading, setLoading] = useState(!cachedData);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [msg, setMsg] = useState({ type: '', text: '' });
@@ -18,9 +20,12 @@ export default function AdminBanners() {
   const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 4000); };
 
   async function load() {
-    setLoading(true);
+    if (!cachedData) setLoading(true);
     const { data, error } = await supabase.from('hero_banners').select('*').order('halaman').order('urutan');
-    if (!error) setBanners(data || []);
+    if (!error) {
+      cachedData = data || [];
+      setBanners(cachedData);
+    }
     setLoading(false);
   }
 

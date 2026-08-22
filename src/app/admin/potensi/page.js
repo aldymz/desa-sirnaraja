@@ -8,9 +8,11 @@ import { Plus, Trash2, Edit2, Save, X, UploadCloud, Map } from 'lucide-react';
 const KATEGORI = ['Pertanian', 'Peternakan', 'UMKM', 'Budaya', 'Pariwisata'];
 const EMPTY = { judul: '', kategori: 'UMKM', deskripsi: '', image_url: '', urutan: 0 };
 
+let cachedData = null;
+
 export default function AdminPotensi() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState(cachedData || []);
+  const [loading, setLoading] = useState(!cachedData);
   const [modal, setModal] = useState(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -20,9 +22,10 @@ export default function AdminPotensi() {
   const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 4000); };
 
   async function load() {
-    setLoading(true);
+    if (!cachedData) setLoading(true);
     const { data } = await supabase.from('potensi').select('*').order('urutan').order('id');
-    setItems(data || []);
+    cachedData = data || [];
+    setItems(cachedData);
     setLoading(false);
   }
 

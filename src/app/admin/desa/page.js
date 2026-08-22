@@ -5,14 +5,22 @@ import { supabase } from '@/lib/supabase';
 import { getDesaData } from '@/lib/dataService';
 import { Save, Plus, Trash2 } from 'lucide-react';
 
+let cachedData = null;
+
 export default function AdminDesa() {
-  const [formData, setFormData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [formData, setFormData] = useState(cachedData);
+  const [loading, setLoading] = useState(!cachedData);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState({ type: '', text: '' });
 
   useEffect(() => {
-    getDesaData().then(d => { if (d) setFormData(d); setLoading(false); });
+    getDesaData().then(d => { 
+      if (d) {
+        cachedData = d;
+        setFormData(d); 
+      }
+      setLoading(false); 
+    });
   }, []);
 
   const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 4000); };

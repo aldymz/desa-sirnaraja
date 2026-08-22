@@ -7,9 +7,11 @@ import { Plus, Trash2, Edit2, Save, X, UploadCloud, Users } from 'lucide-react';
 
 const EMPTY = { nama: '', jabatan: '', nip: '', image_url: '', urutan: 0 };
 
+let cachedData = null;
+
 export default function AdminAparatur() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState(cachedData || []);
+  const [loading, setLoading] = useState(!cachedData);
   const [modal, setModal] = useState(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -19,9 +21,11 @@ export default function AdminAparatur() {
   const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 4000); };
 
   async function load() {
-    setLoading(true);
+    if (!cachedData) setLoading(true);
     const { data } = await supabase.from('aparatur').select('*').order('urutan').order('id');
-    setItems(data || []); setLoading(false);
+    cachedData = data || [];
+    setItems(cachedData);
+    setLoading(false);
   }
 
   const del = async (id) => {

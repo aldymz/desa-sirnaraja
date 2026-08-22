@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { Users, Map, ImageIcon, Briefcase, ArrowRight, BarChart2 } from 'lucide-react';
 import Link from 'next/link';
 
+let cachedStats = null;
+
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({ totalPenduduk: 0, totalPotensi: 0, totalAparatur: 0, totalBanners: 0 });
-  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(cachedStats || { totalPenduduk: 0, totalPotensi: 0, totalAparatur: 0, totalBanners: 0 });
+  const [loading, setLoading] = useState(!cachedStats);
 
   useEffect(() => {
     async function load() {
@@ -17,12 +19,14 @@ export default function AdminDashboard() {
           fetch('/api/aparatur').then(r => r.json()),
           fetch('/api/banners').then(r => r.json()),
         ]);
-        setStats({
+        const newStats = {
           totalPenduduk: s?.data?.total_penduduk || 0,
           totalPotensi: p?.data?.length || 0,
           totalAparatur: a?.data?.length || 0,
           totalBanners: b?.data?.length || 0,
-        });
+        };
+        cachedStats = newStats;
+        setStats(newStats);
       } catch (e) { console.error(e); }
       finally { setLoading(false); }
     }

@@ -5,9 +5,11 @@ import { supabase } from '@/lib/supabase';
 import { getStatistikData } from '@/lib/dataService';
 import { Save, Plus, Trash2, PieChart } from 'lucide-react';
 
+let cachedData = null;
+
 export default function AdminStatistik() {
-  const [form, setForm] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [form, setForm] = useState(cachedData);
+  const [loading, setLoading] = useState(!cachedData);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState({ type: '', text: '' });
 
@@ -27,6 +29,7 @@ export default function AdminStatistik() {
             { label: 'Perempuan', jumlah: d.perempuan ? `${d.perempuan}` : '1.595', persen: '49.6%', color: '#ec4899' }
           ];
         }
+        cachedData = d;
         setForm(d); 
       }
       setLoading(false); 
