@@ -1,6 +1,8 @@
 import { getAparaturData, getDesaData, getBannersData } from '@/lib/dataService';
 import ProfilClient from './ProfilClient';
 
+export const revalidate = 0; // Disable static caching (Dynamic SSR)
+
 export const metadata = {
   title: 'Profil Desa',
   description: 'Mengenal lebih dekat gambaran umum, visi-misi, dan pemerintahan Desa Sirnaraja.',

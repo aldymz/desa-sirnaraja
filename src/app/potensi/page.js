@@ -1,6 +1,8 @@
 import { getPotensiData } from '@/lib/dataService';
 import PotensiClient from './PotensiClient';
 
+export const revalidate = 0; // Disable static caching (Dynamic SSR)
+
 export const metadata = {
   title: 'Potensi Desa',
   description: 'Eksplorasi kekayaan alam, UMKM, dan budaya Desa Sirnaraja.',

@@ -1,6 +1,8 @@
 import { getDesaData, getPotensiData, getBannersData, getStatistikData } from '@/lib/dataService';
 import HomeClient from './HomeClient';
 
+export const revalidate = 0; // Disable static caching (Dynamic SSR)
+
 export const metadata = {
   title: 'Beranda | Desa Sirnaraja',
   description: 'Portal informasi resmi Pemerintah Desa Sirnaraja, Kecamatan Cigalontang, Kabupaten Tasikmalaya.',

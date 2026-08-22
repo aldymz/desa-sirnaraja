@@ -1,5 +1,7 @@
 import { getStatistikData, getBannersData } from '@/lib/dataService';
 
+export const revalidate = 0; // Disable static caching (Dynamic SSR)
+
 export const metadata = {
   title: 'Data Desa',
   description: 'Statistik dan data demografis Desa Sirnaraja.',
