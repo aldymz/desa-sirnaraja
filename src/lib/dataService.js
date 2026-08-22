@@ -149,7 +149,8 @@ export async function getStatistikData() {
 
     if (error) throw error;
     return data;
-  } catch {
-    return null;
+  } catch (e) {
+    console.error("Supabase Error in getStatistikData:", e);
+    throw e;
   }
 }

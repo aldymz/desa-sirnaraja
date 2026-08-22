@@ -33,10 +33,12 @@ export default function AdminStatistik() {
     }).catch(err => {
       console.error(err);
       setLoading(false);
-      flash('error', 'Terjadi kesalahan saat memuat data. Periksa koneksi.');
+      setForm(null); // Ensure form is null to trigger the error view
+      setMsg({ type: 'error', text: `Debug Error: ${err.message || JSON.stringify(err)}` });
+      flash('error', `Debug Error: ${err.message || 'Terjadi kesalahan'}`);
     }); 
   }, []);
-  const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 6000); };
+  const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 10000); };
 
   const setArr = (arr, i, field, val) => { const a = [...(form[arr] || [])]; a[i] = { ...a[i], [field]: val }; setForm(p => ({ ...p, [arr]: a })); };
   const addRow = (arr, tmpl) => setForm(p => ({ ...p, [arr]: [...(p[arr] || []), tmpl] }));
@@ -58,7 +60,12 @@ export default function AdminStatistik() {
   };
 
   if (loading) return <p style={{ padding: '20px', fontSize: '0.875rem', color: '#64748b' }}>Memuat data...</p>;
-  if (!form) return <p style={{ padding: '20px', fontSize: '0.875rem', color: '#ef4444' }}>Data tidak ditemukan.</p>;
+  if (!form) return (
+    <div style={{ padding: '20px' }}>
+      <p style={{ fontSize: '0.875rem', color: '#ef4444', marginBottom: '10px' }}>Data tidak ditemukan atau gagal memuat.</p>
+      {msg.text && <div style={{ background: '#fef2f2', border: '1px solid #fecaca', padding: '10px', borderRadius: '5px', color: '#dc2626', fontSize: '12px' }}>{msg.text}</div>}
+    </div>
+  );
 
   return (
     <div className="admin-panel">
