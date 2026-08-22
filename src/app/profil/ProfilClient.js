@@ -77,10 +77,11 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
             ];
             
             if (misiList.length === 1) {
+              const num = misiList[0].nomor || misiList[0].num;
               return (
                 <div style={{ marginTop: '60px' }}>
                   <motion.div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>Misi {misiList[0].nomor || misiList[0].num || '01'}</h3>
+                    <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>{num ? `Misi ${num}` : 'Misi'}</h3>
                     <p className="visi-misi-text">{misiList[0].teks || misiList[0].text}</p>
                   </motion.div>
                 </div>
@@ -89,12 +90,15 @@ export default function ProfilClient({ aparaturData, desaData, heroImage }) {
 
             return (
               <div style={{ marginTop: '80px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
-                {misiList.map((m, i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>Misi {m.nomor || m.num}</h3>
-                    <p style={{ color: '#94a3b8', lineHeight: '1.8' }}>{m.teks || m.text}</p>
-                  </motion.div>
-                ))}
+                {misiList.map((m, i) => {
+                  const num = m.nomor || m.num;
+                  return (
+                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
+                      <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#cbd5e1' }}>{num ? `Misi ${num}` : 'Misi'}</h3>
+                      <p style={{ color: '#94a3b8', lineHeight: '1.8' }}>{m.teks || m.text}</p>
+                    </motion.div>
+                  );
+                })}
               </div>
             );
           })()}
