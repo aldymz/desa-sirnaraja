@@ -30,6 +30,10 @@ export default function AdminStatistik() {
         setForm(d); 
       }
       setLoading(false); 
+    }).catch(err => {
+      console.error(err);
+      setLoading(false);
+      flash('error', 'Terjadi kesalahan saat memuat data. Periksa koneksi.');
     }); 
   }, []);
   const flash = (type, text) => { setMsg({ type, text }); setTimeout(() => setMsg({ type: '', text: '' }), 6000); };
