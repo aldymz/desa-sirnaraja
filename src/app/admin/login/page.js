@@ -28,8 +28,7 @@ function LoginForm() {
       });
       const data = await res.json();
       if (data.success) {
-        router.push(from);
-        router.refresh();
+        window.location.href = from;
       } else {
         setError(data.message || 'Login gagal.');
       }

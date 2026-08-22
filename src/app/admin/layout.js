@@ -45,10 +45,14 @@ function AdminSidebar({ isOpen, onClose }) {
         </nav>
 
         <div className="admin-sidebar-footer">
-          <Link href="/" className="admin-nav-item" style={{ color: '#94a3b8' }} onClick={onClose}>
+          <a href="#" className="admin-nav-item" style={{ color: '#94a3b8' }} onClick={async (e) => {
+            e.preventDefault();
+            await fetch('/api/auth/logout', { method: 'POST' });
+            window.location.href = '/';
+          }}>
             <ChevronLeft size={17} />
             <span>Kembali ke Website</span>
-          </Link>
+          </a>
         </div>
       </aside>
     </>

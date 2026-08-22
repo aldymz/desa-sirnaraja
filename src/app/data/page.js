@@ -14,12 +14,19 @@ export default async function DataDesaPage() {
 }
 
 function DataDesaContent({ statData, heroImage }) {
-  const totalPenduduk = statData?.total_penduduk || '3.215';
-  const totalKK = statData?.total_kk || '1.259';
-  const lakiLaki = statData?.laki_laki || '1.620';
-  const perempuan = statData?.perempuan || '1.595';
-  const luasWilayah = statData?.luas_wilayah || '602 Ha';
-  
+  const dataKependudukan = statData?.data_kependudukan?.length > 0 ? statData.data_kependudukan : [
+    { label: 'Total Penduduk', value: statData?.total_penduduk ? `${statData.total_penduduk} Jiwa` : '3.215 Jiwa', color: '#1b4332', bg: '#d1fae5' },
+    { label: 'Kepala Keluarga', value: statData?.total_kk ? `${statData.total_kk} KK` : '1.259 KK', color: '#1d3557', bg: '#dbeafe' },
+    { label: 'Laki-laki', value: statData?.laki_laki ? `${statData.laki_laki} Jiwa` : '1.620 Jiwa', color: '#0284c7', bg: '#e0f2fe' },
+    { label: 'Perempuan', value: statData?.perempuan ? `${statData.perempuan} Jiwa` : '1.595 Jiwa', color: '#9333ea', bg: '#f3e8ff' },
+    { label: 'Luas Wilayah', value: statData?.luas_wilayah || '602 Ha', color: '#d97706', bg: '#fef3c7' },
+  ];
+
+  const jenisKelamin = statData?.jenis_kelamin?.length > 0 ? statData.jenis_kelamin : [
+    { label: 'Laki-laki', jumlah: statData?.laki_laki || '1.620', persen: '50.4%', color: '#3b82f6' },
+    { label: 'Perempuan', jumlah: statData?.perempuan || '1.595', persen: '49.6%', color: '#ec4899' }
+  ];
+
   const distribusiUsia = statData?.distribusi_usia || [
     { label: 'Anak-anak (0-14 thn)', jumlah: '642', persen: 20, color: '#10b981' },
     { label: 'Remaja (15-24 thn)', jumlah: '580', persen: 18, color: '#3b82f6' },
@@ -36,9 +43,6 @@ function DataDesaContent({ statData, heroImage }) {
     { label: 'D1 / D2 / D3', jumlah: '128', persen: '4%' },
     { label: 'S1 / Sarjana', jumlah: '257', persen: '8%' },
   ];
-
-  const persenLaki = ((parseInt(String(lakiLaki).replace(/\D/g, '')) / parseInt(String(totalPenduduk).replace(/\D/g, ''))) * 100).toFixed(1) || '50.4';
-  const persenPerempuan = ((parseInt(String(perempuan).replace(/\D/g, '')) / parseInt(String(totalPenduduk).replace(/\D/g, ''))) * 100).toFixed(1) || '49.6';
 
   return (
     <div className="page-container">
@@ -57,13 +61,7 @@ function DataDesaContent({ statData, heroImage }) {
           <div className="title-underline" />
           <p style={{ color: '#64748b', marginBottom: '30px', fontSize: '0.85rem', lineHeight: '1.6' }}>Ringkasan data penduduk Desa Sirnaraja berdasarkan catatan administrasi kependudukan terbaru.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '15px' }}>
-            {[
-              { label: 'Total Penduduk', value: `${totalPenduduk} Jiwa`, color: '#1b4332', bg: '#d1fae5' },
-              { label: 'Kepala Keluarga', value: `${totalKK} KK`, color: '#1d3557', bg: '#dbeafe' },
-              { label: 'Laki-laki', value: `${lakiLaki} Jiwa`, color: '#0284c7', bg: '#e0f2fe' },
-              { label: 'Perempuan', value: `${perempuan} Jiwa`, color: '#9333ea', bg: '#f3e8ff' },
-              { label: 'Luas Wilayah', value: luasWilayah, color: '#d97706', bg: '#fef3c7' },
-            ].map(({ label, value, color, bg }) => (
+            {dataKependudukan.map(({ label, value, color, bg }) => (
               <div key={label} style={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '20px 15px', textAlign: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.04)' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: bg, margin: '0 auto 10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <span style={{ fontSize: '1rem' }}>👥</span>
@@ -80,7 +78,7 @@ function DataDesaContent({ statData, heroImage }) {
           <h2 className="section-title-bespoke" style={{ marginBottom: '10px' }}>Distribusi <span>Jenis Kelamin</span></h2>
           <div className="title-underline" />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '25px' }}>
-            {[['Laki-laki', lakiLaki, `${persenLaki}%`, '#3b82f6'], ['Perempuan', perempuan, `${persenPerempuan}%`, '#ec4899']].map(([label, jumlah, persen, color]) => (
+            {jenisKelamin.map(({ label, jumlah, persen, color }) => (
               <div key={label} style={{ backgroundColor: '#fff', borderRadius: '16px', padding: '20px', textAlign: 'center', border: '1px solid #e2e8f0' }}>
                 <h3 style={{ color, fontSize: '1.5rem', margin: '0 0 5px', fontWeight: '800' }}>{persen}</h3>
                 <p style={{ color: '#0f172a', fontWeight: '700', fontSize: '0.85rem', margin: '0 0 2px' }}>{label}</p>
